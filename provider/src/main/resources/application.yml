@@ -1,0 +1,50 @@
+
+spring:
+  profiles:
+    include: common
+  application:
+    name: provider-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    dynamic:
+      p6spy: true
+      primary: mysql
+      strict: false
+      datasource:
+        mysql:
+          url: jdbc:mysql://${datasource.mysql.url}:${datasource.mysql.port}/${datasource.mysql.database}?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+          username: ${datasource.mysql.username}
+          password: ${datasource.mysql.password}
+        kingbase:
+          url: jdbc:kingbase8://${datasource.kingbase.url}:${datasource.kingbase.port}/${datasource.kingbase.database}?currentSchema=${datasource.kingbase.schema}
+          username: ${datasource.kingbase.username}
+          password: ${datasource.kingbase.password}
+
+  zipkin:
+    base-url: http://192.168.31.70:9411/
+    enabled: true
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${register-center.url}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+#management:
+#  zipkin:
+#    tracing:
+#      endpoint: ${zipkin-tracing.endpoint}

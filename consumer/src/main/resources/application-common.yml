@@ -1,0 +1,21 @@
+datasource:
+  kingbase:
+    url: 192.168.31.100
+    port: 54321
+    username: root
+    password: 123456
+    database: example
+    schema: demo
+  mysql:
+    url: 192.168.31.70
+    port: 3306
+    username: root
+    password: 123456
+    database: demo
+
+register-center:
+  url: http://localhost:8761/eureka/
+
+#zipkin-tracing:
+#  endpoint: http://192.168.31.100:9411/api/v2/spans
+
